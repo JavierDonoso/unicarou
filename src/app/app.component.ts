@@ -2,7 +2,8 @@ import { Component , trigger,
   state,
   style,
   transition,keyframes,
-  animate} from '@angular/core';
+  animate,OnInit,AfterViewInit} from '@angular/core';
+  import {Observable} from 'rxjs';
 
 
 export class Slide {
@@ -27,6 +28,11 @@ export class Slide {
         backgroundColor: '#cfd8dc',
         transform: 'scale(1) translateX(0%)',
         opacity:1
+      })),
+        state('hide',   style({
+        backgroundColor: '#cfd8dc',
+        transform: 'scale(0) translateX(-100%)',
+        opacity:0
       })),
      transition('* => show', [
       style({
@@ -87,7 +93,7 @@ export class Slide {
 
 
 
-export class AppComponent {
+export class AppComponent implements OnInit,AfterViewInit {
   title = 'app works!'; //The time to show the next photo
     private NextPhotoInterval:number = 4000;
     //Looping or not
@@ -103,9 +109,22 @@ export class AppComponent {
     constructor() {
             this.addNewSlide();
             this.currentSlide=this.slides[0];
-           this.setinterval(this.NextPhotoInterval);
+       
+          
 
     }
+
+    ngOnInit(){
+ 
+    }
+
+    ngAfterViewInit(){
+this.setinterval(this.NextPhotoInterval);
+
+      
+    }
+
+
 
     private addNewSlide() {
          this.slides.push(
@@ -116,25 +135,22 @@ export class AppComponent {
     }
     setinterval(value:number) {
         this._interval = value;
-        this.restartTimer();
+       this.restartTimer();
     }
     
 
        private restartTimer() {
-        this.resetTimer();
+       // this.resetTimer();
         console.log('restart');
-        let interval = +this._interval;
-        if (!isNaN(interval) && interval > 0) {
-            this.currentInterval = setInterval(() => {
-                let nInterval = +this._interval;
-                if (this.isPlaying && !isNaN(this._interval) && nInterval > 0 && this.slides.length) {
-                    this.currentSlide.state='hide';
-                    //this.next();
-                } else {
-                    //this.pause();
-                }
-            }, interval);
-        }
+   //setInterval( x => {console.log('dentro'),this.currentSlide.state='hide';}, 4000);
+     let p= Observable.interval(4000).take(3)
+        .subscribe(x=> {
+          console.log(x);
+          console.log(this.currentSlide.state);
+          this.currentSlide.state='hide';
+          this.currentSlide=this.slides[1];
+         this.currentSlide.state='show';});
+       
     }
 
     //   public pause() {
