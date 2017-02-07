@@ -66,10 +66,12 @@ export class Carousel implements OnDestroy,OnInit {
 
         slide.direction = direction;
         slide.active = true;
+        slide.state = 'show';
 
         if (this.currentSlide) {
             this.currentSlide.direction = direction;
             this.currentSlide.active = false;
+            this.currentSlide.state= 'hide';
         }
 
         this.currentSlide = slide;

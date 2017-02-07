@@ -21,7 +21,7 @@ export class Slide implements OnInit, OnDestroy {
 
     @HostBinding('class.active')
     @Input('active') public active:boolean;
-
+    @Input('state') public state:string;
     @HostBinding('class.item')
     @HostBinding('class.carousel-item')
     private addClass:boolean = true;

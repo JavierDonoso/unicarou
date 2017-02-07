@@ -11,19 +11,19 @@ import { Component , trigger,
      animations: [
    
     trigger('slideActive', [
-      state('activeX',   style({
+      state('show',   style({
         backgroundColor: '#cfd8dc',
         transform: 'scale(1) translateX(0%)',
         opacity:1
       })),
-     transition('* => activeX', [
+     transition('* => show', [
       style({
         opacity: 0,
         transform: 'translateX(-100%)'
       }),
       animate('1s ease-in')
     ]),
-      transition('true => false', animate('1000ms ease-out'))
+      transition('show => hide', animate('1000ms ease-out'))
     ])
   ]
 })
@@ -41,9 +41,9 @@ export class AppComponent {
 
     private addNewSlide() {
          this.slides.push(
-            {image:'assets/images/products-hero/tienda.jpg',text:'Visita nuestra tienda!!'},
-            {image:'assets/images/products-hero/san-valentin.jpg',text:'Regala en San Valentín placer para los sentidos'},
-            {image:'assets/images/products-hero/homecampaign.jpg',text:'En Febrero -20% en hidratación de cuerpo para combatir el frio'},
+            {image:'assets/images/products-hero/tienda.jpg',text:'Visita nuestra tienda!!',active:true,state:'show'},
+            {image:'assets/images/products-hero/san-valentin.jpg',text:'Regala en San Valentín placer para los sentidos',active:false,state:'hide'},
+            {image:'assets/images/products-hero/homecampaign.jpg',text:'En Febrero -20% en hidratación de cuerpo para combatir el frio',active:false,state:'hide'},
               );
     }
 
