@@ -1,0 +1,20 @@
+ <div class="row">
+                      <div class="col-md-12">
+                        <carousel  [interval]="NextPhotoInterval" [noWrap]="noLoopSlides"> 
+                          <slide  [class.pedro]="slidez.active"  [@slideActive]="slidez.active===true?'activeX':'noop'"  *ngFor="let slidez of slides;"
+                                 [active]="slidez.active" >
+                            <img [src]="slidez.image" class="carou-img" >
+                             <div class="carousel-caption">
+                              <h3 style="background-color: transparent;color: white;">Slide {{index + 1}}</h3>
+                              <p  style="background-color: transparent;color: white;">{{slidez.text}}</p>
+                            </div>
+                          </slide>
+                        </carousel>
+                      </div>
+
+                      <div class="col-md-12">
+                        <button type="button" class="btn btn-info"
+                                (click)="removeLastSlide()">Remove Last Slide
+                        </button>
+                      </div>
+                    </div> 
