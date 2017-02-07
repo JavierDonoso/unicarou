@@ -1,6 +1,23 @@
  <div class="row">
+                      <div   class="col-md-12">
+                  
+                      <img [@slideActive]="currentSlide.state" src="{{currentSlide.image}}" class="carou-img" >
+                           
+
+                      </div>
+                    <div  [@slideActiveWhite]="currentSlide.state" class="carousel-nuilea">
+                      <h1  [@slideActiveText]="currentSlide.state" style="color: black;">{{currentSlide.title}} </h1>
+                      <h2  [@slideActiveText2]="currentSlide.state" style="color: black"> {{currentSlide.text}} </h2 >
+                    </div>
+
                       <div class="col-md-12">
-                        <carousel  [interval]="NextPhotoInterval" [noWrap]="noLoopSlides"> 
+                        <button type="button" class="btn btn-info"
+                                (click)="removeLastSlide()">Remove Last Slide
+                        </button>
+                      </div>
+                    </div> 
+
+                          <!--<carousel  [interval]="NextPhotoInterval" [noWrap]="noLoopSlides"> 
                           <slide  [class.pedro]="slidez.active"  [@slideActive]="slidez.state"  *ngFor="let slidez of slides;"
                                  [state]="slidez.state"   [active]="slidez.active" >
                             <img [src]="slidez.image" class="carou-img" >
@@ -9,14 +26,4 @@
                               <p  style="color: white;">{{slidez.active}} dos </p>
                             </div>
                           </slide>
-                        </carousel>
-
-
-                      </div>
-
-                      <div class="col-md-12">
-                        <button type="button" class="btn btn-info"
-                                (click)="removeLastSlide()">Remove Last Slide
-                        </button>
-                      </div>
-                    </div> 
+                        </carousel>-->
