@@ -10,8 +10,6 @@ import { NgModule } from '@angular/core';
 import { UniversalModule } from 'angular2-universal';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
-import {Slide} from './slide.component';
-import {Carousel} from './carousel.component';
 // import { RouterModule } from '@angular/router';
 // import { appRoutes } from './app/app.routing';
 
@@ -22,7 +20,7 @@ import {Carousel} from './carousel.component';
   /** Root App Component */
   bootstrap: [ AppComponent ],
   /** Our Components */
-  declarations: [ AppComponent ,Slide,Carousel],
+  declarations: [ AppComponent ],
   imports: [
     /**
      * NOTE: Needs to be your first import (!)

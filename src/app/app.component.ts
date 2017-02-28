@@ -23,7 +23,7 @@ export class Slide {
   styleUrls: ['./app.component.css'],
      animations: [
    
-    trigger('slideActive', [
+    trigger('slide1', [
       state('show',   style({
         backgroundColor: '#cfd8dc',
         transform: 'scale(1) translateX(0%)',
@@ -31,7 +31,7 @@ export class Slide {
       })),
         state('hide',   style({
         backgroundColor: '#cfd8dc',
-        transform: 'scale(0) translateX(-100%)',
+        transform: 'scale(0) translateX(0%)',
         opacity:0
       })),
      transition('* => show', [
@@ -41,8 +41,16 @@ export class Slide {
       }),
       animate('1s ease-in')
     ]),
-      transition('show => hide', animate('1000ms ease-out'))
+      transition('show => hide', [animate('1000ms ease-out')
+      ,
+        style({
+        opacity: 0,
+        transform: 'scale(1) translateX(100%)'
+      })
+      ])
     ]),
+
+
         trigger('slideActiveWhite', [
       state('show',   style({
         transform: 'scale(1) translateX(0%)',
@@ -123,7 +131,16 @@ this.setinterval(this.NextPhotoInterval);
 
       
     }
+  nextSlide(){
+    console.log(this.slides[0].state);
+    console.log("dentro change");
+  if ( this.slides[0].state == 'hide')
+  {this.slides[0].state = 'show';}
+  else { this.slides[0].state = 'hide';}
+ 
+ console.log(this.slides[0].state);
 
+  }
 
 
     private addNewSlide() {
@@ -135,7 +152,7 @@ this.setinterval(this.NextPhotoInterval);
     }
     setinterval(value:number) {
         this._interval = value;
-       this.restartTimer();
+     //  this.restartTimer();
     }
     
 
