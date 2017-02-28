@@ -4,6 +4,7 @@
   
   /*overflow-x: hidden;*/
 }
+.enable{background: red;}
 
 .carousel-abso{
   position:absolute;
