@@ -31,23 +31,24 @@ export class Slide {
       })),
         state('hide',   style({
         backgroundColor: '#cfd8dc',
-        transform: 'scale(0) translateX(0%)',
+        transform: 'scale(1) translateX(100%)',
         opacity:0
       })),
-     transition('* => show', [
+        state('hide2',   style({
+        backgroundColor: '#cfd8dc',
+        transform: 'scale(1) translateX(0%)',
+        opacity:0
+      })),
+     transition('void => *', [
       style({
         opacity: 0,
         transform: 'scale(1) translateX(-100%)'
       }),
       animate('1s ease-in')
     ]),
-      transition('show => hide', [animate('1000ms ease-out')
-      ,
-        style({
-        opacity: 0,
-        transform: 'scale(1) translateX(100%)'
-      })
-      ])
+      transition('* => void', animate('1000ms ease-in')
+     
+      )
     ]),
 
 
@@ -61,7 +62,7 @@ export class Slide {
         opacity: 0,
         transform: ' translateX(-100%) translateY(0)'
       }),
-      animate('0.5s 1.5s ease-in')
+      animate('0.5s 1.5s ease-out')
     ]),
       transition('show => hide', animate('1000ms ease-out'))
     ]),
@@ -113,6 +114,7 @@ export class AppComponent implements OnInit,AfterViewInit {
     private currentInterval:any;
     private isPlaying:boolean;
     private destroyed:boolean = false;
+    private _index:number=0;
 
     constructor() {
             this.addNewSlide();
@@ -132,13 +134,43 @@ this.setinterval(this.NextPhotoInterval);
       
     }
   nextSlide(){
-    console.log(this.slides[0].state);
+    console.log(this.slides[1].state);
     console.log("dentro change");
-  if ( this.slides[0].state == 'hide')
-  {this.slides[0].state = 'show';}
-  else { this.slides[0].state = 'hide';}
+   this._index = this._index +1;
+   
+   switch (this._index) {
+
+     case 1:
+       this.slides[0].state = 'hide'
+       this.slides[1].state = 'show'
+
+       break;
+   case 2:
+       this.slides[0].state = 'hide2'
+       this.slides[1].state = 'hide'
+       this.slides[2].state = 'show'
+       break;
+
+   case 3:
+        this.slides[1].state = 'show'
+        
+       this.slides[2].state = 'hide'
+       
+       break;
+    case 4:
+        this.slides[1].state = 'hide'
+       this.slides[0].state = 'show'
+       this._index=0;
+       break;
+
+     default:
+       break;
+   }
  
- console.log(this.slides[0].state);
+
+
+
+ console.log(this.slides[1].state);
 
   }
 

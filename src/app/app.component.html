@@ -1,12 +1,12 @@
 <button (click)="nextSlide()">NEXT SLIDE</button>
 
- <div class="row">
+ <div class="row carousel">
 
                   <div   class="col-md-12">
                   
-                      <img [@slide1]="slides[0].state" src="{{slides[0].image}}" class="carou-img" >
-                      <img [@slide1]="slides[1].state" src="{{slides[1].image}}" class="carou-img" >
-                      <img [@slide1]="slides[2].state" src="{{slides[2].image}}" class="carou-img" >
+                      <img  *ngIf="slides[0].state=='show'"  [@slide1]="slides[0].state" src="{{slides[0].image}}" class="carou-img" >
+                      <img  *ngIf="slides[1].state=='show'"   [@slide1]="slides[1].state" src="{{slides[1].image}}" class="carou-img" >
+                      <img   *ngIf="slides[2].state=='show'"  [@slide1]="slides[2].state" src="{{slides[2].image}}" class="carou-img" >
                   
                       </div>   
 
